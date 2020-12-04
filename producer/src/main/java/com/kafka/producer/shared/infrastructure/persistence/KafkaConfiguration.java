@@ -15,8 +15,8 @@ import org.springframework.kafka.listener.DeadLetterPublishingRecoverer;
 import org.springframework.kafka.listener.SeekToCurrentErrorHandler;
 import org.springframework.kafka.support.LoggingProducerListener;
 import org.springframework.kafka.support.ProducerListener;
+import org.springframework.kafka.support.converter.MessagingMessageConverter;
 import org.springframework.kafka.support.converter.RecordMessageConverter;
-import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 import org.springframework.util.backoff.FixedBackOff;
 
 @Configuration
@@ -76,7 +76,7 @@ public class KafkaConfiguration {
 
     @Bean
     public RecordMessageConverter converter() {
-        return new StringJsonMessageConverter();
+        return new MessagingMessageConverter();
     }
 
 }

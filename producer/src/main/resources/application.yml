@@ -8,15 +8,18 @@ server:
 logging:
   level:
     com.kafka.producer: debug
-    org.springframework.kafka: warn
+#    org.springframework.kafka: debug
 
 spring:
   application:
     name: producer-service
+
   kafka:
     bootstrap-servers: localhost:9092
+
+    properties:
+      schema.registry.url: http://localhost:8081
+
     producer:
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-#      transaction-id-prefix: tx.
-      properties:
-        spring.json.add.type.headers: false
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer

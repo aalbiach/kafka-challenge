@@ -1,0 +1,31 @@
+{
+  "namespace": "com.kafka.producer.user.infrastructure.bus.kafka.event",
+  "type": "record",
+  "name": "UserCreatedAvroEvent",
+  "fields": [
+    {
+      "name": "aggregateId",
+      "type": "string"
+    },
+    {
+      "name": "eventId",
+      "type": "string"
+    },
+    {
+      "name": "occurredOn",
+      "type": "long",
+      "logicalType": "local-timestamp-millis"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "email",
+      "type": "string"
+    },
+    {
+      "name": "active",
+      "type": "boolean"
+    }]
+}

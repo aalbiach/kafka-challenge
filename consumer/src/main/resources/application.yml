@@ -8,25 +8,35 @@ server:
 logging:
   level:
     com.kafka.consumer: debug
-    org.springframework.kafka: warn
+#    org.springframework.kafka: debug
+#    org.springframework.kafka.listener: debug
+    org.springframework.kafka.listener.SeekToCurrentErrorHandler: debug
 
 spring:
   application:
     name: consumer-service
+
   kafka:
     bootstrap-servers: localhost:9092
-    producer:
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      properties:
-        spring.json.add.type.headers: false
+
+    properties:
+      schema.registry.url: http://localhost:8081
+
     consumer:
       auto-offset-reset: earliest
-#      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.BytesDeserializer
+      # Configures the Spring Kafka ErrorHandlingDeserializer that delegates to the 'real' deserializers
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
       properties:
         isolation.level: read_committed
-        spring.json.use.type.headers: false
-        spring.json.trusted.packages: >-
-          com.kafka.consumer.user.domain.event
-#    listener:
-#      type: batch
+#        specific.avro.reader: true
+        # Delegate deserializers
+        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+        spring.deserializer.value.delegate.class: io.confluent.kafka.serializers.KafkaAvroDeserializer
+
+    producer:
+      # Important!
+      # In case you publish to a 'dead letter topic' you consumer application becomes
+      # a producer as well! So you need to specify the producer properties!
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer

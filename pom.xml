@@ -12,7 +12,7 @@
 
     <groupId>com.challenge.kafka</groupId>
     <artifactId>kafka-challenge</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>kafka-challenge</name>
@@ -28,8 +28,11 @@
         <spring-cloud.version>2020.0.0-M5</spring-cloud.version>
         <testcontainers.version>1.15.0</testcontainers.version>
 
+        <confluent.version>6.0.1</confluent.version>
+        <avro.version>1.10.0</avro.version>
+
         <docker-image-name>aalbiach/kafka-challenge-${project.name}</docker-image-name>
-        <docker-image-version>0.1</docker-image-version>
+        <docker-image-version>0.2</docker-image-version>
     </properties>
 
     <dependencies>
@@ -48,8 +51,28 @@
             <optional>true</optional>
         </dependency>
 
+        <!-- AVRO dependencies -->
+        <dependency>
+            <groupId>io.confluent</groupId>
+            <artifactId>kafka-avro-serializer</artifactId>
+            <version>${confluent.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.avro</groupId>
+                    <artifactId>avro</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
-        <!-- TEST DEPENDENCIES -->
+
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro</artifactId>
+            <version>${avro.version}</version>
+        </dependency>
+
+
+        <!-- TEST dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -92,25 +115,15 @@
     </dependencyManagement>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <image>
-                        <name>${docker-image-name}:${docker-image-version}</name>
-                        <publish>true</publish>
-                    </image>
-                    <docker>
-                        <publishRegistry>
-                            <username>${env.DOCKER_USER}</username>
-                            <password>${env.DOCKER_PASS}</password>
-                            <url>${env.DOCKER_REGISTRY_URL}</url>
-                        </publishRegistry>
-                    </docker>
-                </configuration>
-            </plugin>
-        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.avro</groupId>
+                    <artifactId>avro-maven-plugin</artifactId>
+                    <version>${avro.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
     <repositories>
@@ -118,6 +131,11 @@
             <id>spring-milestones</id>
             <name>Spring Milestones</name>
             <url>https://repo.spring.io/milestone</url>
+        </repository>
+
+        <repository>
+            <id>confluent</id>
+            <url>https://packages.confluent.io/maven/</url>
         </repository>
     </repositories>
 

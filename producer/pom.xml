@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.challenge.kafka</groupId>
         <artifactId>kafka-challenge</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.2-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -21,5 +21,45 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <image>
+                        <name>${docker-image-name}:${docker-image-version}</name>
+                        <publish>true</publish>
+                    </image>
+                    <docker>
+                        <publishRegistry>
+                            <username>${env.DOCKER_USER}</username>
+                            <password>${env.DOCKER_PASS}</password>
+                            <url>${env.DOCKER_REGISTRY_URL}</url>
+                        </publishRegistry>
+                    </docker>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.avro</groupId>
+                <artifactId>avro-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>generate-schema</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>schema</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirectory>src/main/avro</sourceDirectory>
+                            <stringType>Utf8</stringType>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
