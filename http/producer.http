@@ -1,0 +1,33 @@
+POST http://localhost:7080/user
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Anakin Skywalker",
+  "email": "anakin.skywalker@theresistance.com"
+}
+
+> {% client.global.set("userId", response.body.id);%}
+
+###
+
+GET http://localhost:7080/user/{{userId}}
+Accept: application/json
+
+###
+
+PUT http://localhost:7080/user/{{userId}}
+Content-Type: application/json
+Accept: application/json
+
+{
+"name": "Darth Vader",
+"email": "darth.vader@galacticempire.com"
+}
+
+###
+
+DELETE http://localhost:7080/user/{{userId}}
+Accept: application/json
+
+###

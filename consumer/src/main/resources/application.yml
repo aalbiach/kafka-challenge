@@ -1,0 +1,32 @@
+server:
+  port: 7081
+  compression:
+    enabled: true
+  http2:
+    enabled: true
+
+logging:
+  level:
+    com.kafka.consumer: debug
+    org.springframework.kafka: warn
+
+spring:
+  application:
+    name: consumer-service
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false
+    consumer:
+      auto-offset-reset: earliest
+#      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.BytesDeserializer
+      properties:
+        isolation.level: read_committed
+        spring.json.use.type.headers: false
+        spring.json.trusted.packages: >-
+          com.kafka.consumer.user.domain.event
+#    listener:
+#      type: batch

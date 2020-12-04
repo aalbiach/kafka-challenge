@@ -1,0 +1,22 @@
+server:
+  port: 7080
+  compression:
+    enabled: true
+  http2:
+    enabled: true
+
+logging:
+  level:
+    com.kafka.producer: debug
+    org.springframework.kafka: warn
+
+spring:
+  application:
+    name: producer-service
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+#      transaction-id-prefix: tx.
+      properties:
+        spring.json.add.type.headers: false
