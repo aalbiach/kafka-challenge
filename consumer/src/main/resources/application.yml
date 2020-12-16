@@ -10,7 +10,7 @@ logging:
     com.kafka.consumer: debug
 #    org.springframework.kafka: debug
 #    org.springframework.kafka.listener: debug
-    org.springframework.kafka.listener.SeekToCurrentErrorHandler: debug
+#    org.springframework.kafka.listener.SeekToCurrentErrorHandler: debug
 
 spring:
   application:

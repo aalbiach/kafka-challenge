@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+
+  producer:
+    image: aalbiach/kafka-challenge-producer:0.2
+    restart: on-failure
+    ports:
+      - "7080:7080"
+    environment:
+      JAVA_OPTS: "-Xmx256M"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: broker:9092
+      SPRING_KAFKA_PROPERTIES_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+    networks:
+      - default # this network
+      - cp-all-in-one_external # external network
+
+  consumer:
+    image: aalbiach/kafka-challenge-consumer:0.2
+    restart: on-failure
+    ports:
+      - "7081:7081"
+    environment:
+      JAVA_OPTS: "-Xmx256M"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: broker:9092
+      SPRING_KAFKA_PROPERTIES_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+    networks:
+      - default # this network
+      - cp-all-in-one_external # external network
+
+networks:
+  default:
+    driver: bridge
+  cp-all-in-one_external:
+    external: true
