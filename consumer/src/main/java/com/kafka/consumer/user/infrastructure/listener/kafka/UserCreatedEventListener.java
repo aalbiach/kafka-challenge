@@ -3,7 +3,7 @@ package com.kafka.consumer.user.infrastructure.listener.kafka;
 import com.kafka.consumer.shared.infrastructure.DomainEventConverter;
 import com.kafka.consumer.user.application.UserService;
 import com.kafka.consumer.user.domain.event.UserCreatedEvent;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import org.apache.avro.generic.GenericRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Set;
 
-@Slf4j
+@Log4j2
 @Component
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class UserCreatedEventListener extends BaseEventListener {

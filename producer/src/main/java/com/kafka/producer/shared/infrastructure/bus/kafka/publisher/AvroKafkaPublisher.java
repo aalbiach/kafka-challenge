@@ -1,4 +1,4 @@
-package com.kafka.producer.shared.infrastructure.bus.publisher;
+package com.kafka.producer.shared.infrastructure.bus.kafka.publisher;
 
 import com.kafka.producer.shared.domain.bus.event.DomainEvent;
 import com.kafka.producer.shared.infrastructure.bus.converter.DomainEventConverter;
@@ -28,7 +28,8 @@ public final class AvroKafkaPublisher implements KafkaPublisher {
 
     void convertAndSend(DomainEvent domainEvent, Consumer<DomainEventConverter> action) {
         domainEventConverters.stream()
-                .filter(domainEventConverter -> domainEventConverter.canApply(domainEvent))
-                .forEach(action);
+                             .filter(domainEventConverter -> domainEventConverter.canApply(domainEvent))
+                             .forEach(action);
     }
+
 }

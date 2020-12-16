@@ -3,13 +3,13 @@ package com.kafka.producer.shared.infrastructure.bus.kafka;
 import com.kafka.producer.shared.domain.bus.EventBus;
 import com.kafka.producer.shared.domain.bus.event.DomainEvent;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.kafka.KafkaException;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Slf4j
+@Log4j2
 @Component
 @RequiredArgsConstructor
 public class KafkaDomainEventBus implements EventBus {
@@ -25,7 +25,7 @@ public class KafkaDomainEventBus implements EventBus {
 
     @Override
     public void publish(DomainEvent domainEvent) {
-        String topicName = composeTopicName(domainEvent);
+        var topicName = composeTopicName(domainEvent);
 
         try {
             log.info("Publishing domain event. [topic='{}', event={}]", topicName, domainEvent);

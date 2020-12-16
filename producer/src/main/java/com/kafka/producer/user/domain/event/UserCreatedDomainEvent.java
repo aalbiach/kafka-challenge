@@ -12,23 +12,23 @@ import java.time.OffsetDateTime;
 @EqualsAndHashCode(callSuper = true)
 public class UserCreatedDomainEvent extends DomainEvent {
 
-    private final String name;
-    private final String email;
+    private final String  name;
+    private final String  email;
     private final Boolean active;
 
     public UserCreatedDomainEvent() {
         super(null);
 
-        this.name = null;
-        this.email = null;
+        this.name   = null;
+        this.email  = null;
         this.active = null;
     }
 
     public UserCreatedDomainEvent(String aggregateId, String name, String email, Boolean active) {
         super(aggregateId);
 
-        this.name = name;
-        this.email = email;
+        this.name   = name;
+        this.email  = email;
         this.active = active;
     }
 
@@ -42,8 +42,8 @@ public class UserCreatedDomainEvent extends DomainEvent {
     ) {
         super(aggregateId, eventId, occurredOn);
 
-        this.name = name;
-        this.email = email;
+        this.name   = name;
+        this.email  = email;
         this.active = active;
     }
 

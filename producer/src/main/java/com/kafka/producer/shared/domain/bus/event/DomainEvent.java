@@ -25,8 +25,8 @@ public abstract class DomainEvent {
 
     public DomainEvent(String aggregateId) {
         this.aggregateId = aggregateId;
-        this.eventId = UUID.randomUUID().toString();
-        this.occurredOn = OffsetDateTime.now();
+        this.eventId     = UUID.randomUUID().toString();
+        this.occurredOn  = OffsetDateTime.now();
     }
 
     public abstract String eventName();

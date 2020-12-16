@@ -20,4 +20,5 @@ public final class DefaultKafkaPublisher implements KafkaPublisher {
     public void publish(String topicName, String key, DomainEvent domainEvent) throws KafkaException {
         template.send(topicName, key, domainEvent);
     }
+
 }

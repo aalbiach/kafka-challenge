@@ -1,8 +1,8 @@
 package com.kafka.producer.shared.infrastructure.bus.kafka;
 
 import com.kafka.producer.shared.infrastructure.bus.converter.DomainEventConverter;
+import com.kafka.producer.shared.infrastructure.bus.kafka.publisher.AvroKafkaPublisher;
 import com.kafka.producer.shared.infrastructure.bus.kafka.publisher.DefaultKafkaPublisher;
-import com.kafka.producer.shared.infrastructure.bus.publisher.AvroKafkaPublisher;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
