@@ -11,7 +11,7 @@ public abstract class AggregateRoot {
     private final List<DomainEvent> domainEvents = new LinkedList<>();
 
     final public List<DomainEvent> pullDomainEvents() {
-        List<DomainEvent> events = new ArrayList<>(domainEvents);
+        var events = new ArrayList<>(domainEvents);
 
         domainEvents.clear();
 

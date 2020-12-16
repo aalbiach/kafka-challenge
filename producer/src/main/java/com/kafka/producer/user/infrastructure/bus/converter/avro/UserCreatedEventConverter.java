@@ -19,13 +19,13 @@ public final class UserCreatedEventConverter extends AbstractEventConverter
     @Override
     public UserCreatedAvroEvent convert(UserCreatedDomainEvent event) {
         return UserCreatedAvroEvent.newBuilder()
-                .setAggregateId(toUtf8(event.getAggregateId()))
-                .setEventId(toUtf8(event.getEventId()))
-                .setOccurredOn(toMillis(event.getOccurredOn()))
-                .setName(toUtf8(event.getName()))
-                .setEmail(toUtf8(event.getEmail()))
-                .setActive(event.getActive())
-                .build();
+                                   .setAggregateId(toUtf8(event.getAggregateId()))
+                                   .setEventId(toUtf8(event.getEventId()))
+                                   .setOccurredOn(toMillis(event.getOccurredOn()))
+                                   .setName(toUtf8(event.getName()))
+                                   .setEmail(toUtf8(event.getEmail()))
+                                   .setActive(event.getActive())
+                                   .build();
     }
 
 }

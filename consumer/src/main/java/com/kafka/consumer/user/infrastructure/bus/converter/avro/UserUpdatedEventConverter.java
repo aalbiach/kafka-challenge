@@ -18,11 +18,11 @@ public final class UserUpdatedEventConverter extends AbstractEventConverter
     @Override
     public UserUpdatedEvent convert(GenericRecord event) {
         var aggregateId = getString(getFieldValue(event, "aggregateId"));
-        var eventId = getString(getFieldValue(event, "eventId"));
-        var occurredOn = getOffsetDateTime(getFieldValue(event, "occurredOn"));
-        var name = getString(getFieldValue(event, "name"));
-        var email = getString(getFieldValue(event, "email"));
-        var active = getBoolean(getFieldValue(event, "active"));
+        var eventId     = getString(getFieldValue(event, "eventId"));
+        var occurredOn  = getOffsetDateTime(getFieldValue(event, "occurredOn"));
+        var name        = getString(getFieldValue(event, "name"));
+        var email       = getString(getFieldValue(event, "email"));
+        var active      = getBoolean(getFieldValue(event, "active"));
 
         return new UserUpdatedEvent(aggregateId, eventId, occurredOn, name, email, active);
     }

@@ -17,20 +17,20 @@ public abstract class AbstractEventConverter {
 
     protected String getString(Object value) {
         return Optional.ofNullable(value)
-                .map(Object::toString)
-                .orElse(null);
+                       .map(Object::toString)
+                       .orElse(null);
     }
 
     protected Instant getInstant(long milliseconds) {
         return Optional.ofNullable(milliseconds)
-                .map(Instant::ofEpochMilli)
-                .orElse(null);
+                       .map(Instant::ofEpochMilli)
+                       .orElse(null);
     }
 
     protected OffsetDateTime getOffsetDateTime(Object milliseconds) {
         return Optional.ofNullable(milliseconds)
-                .map(o -> getInstant((long) o).atZone(ZoneId.systemDefault()).toOffsetDateTime())
-                .orElse(null);
+                       .map(o -> getInstant((long) o).atZone(ZoneId.systemDefault()).toOffsetDateTime())
+                       .orElse(null);
     }
 
     protected Boolean getBoolean(Object value) {

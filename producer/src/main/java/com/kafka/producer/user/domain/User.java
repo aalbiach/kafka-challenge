@@ -17,19 +17,16 @@ import java.util.Objects;
 public class User extends AggregateRoot {
 
     @NonNull
-    private final UserId id;
-
+    private final UserId     id;
     @NonNull
-    private UserName name;
-
+    private       UserName   name;
     @NonNull
-    private UserEmail email;
-
+    private       UserEmail  email;
     @NonNull
-    private UserActive active = UserActive.inactive();
+    private       UserActive active = UserActive.inactive();
 
     public static User create(UserId id, UserName name, UserEmail email) {
-        User user = new User(id, name, email);
+        var user = new User(id, name, email);
 
         user.record(new UserCreatedDomainEvent(id.value(), name.value(), email.value(), user.active().value()));
 

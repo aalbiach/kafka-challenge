@@ -17,8 +17,8 @@ public class BaseEventListener {
 
     protected void convert(GenericRecord genericRecord, Consumer<DomainEventConverter> action) {
         domainEventConverters.stream()
-                .filter(domainEventConverter -> domainEventConverter.canApply(genericRecord))
-                .forEach(action);
+                             .filter(domainEventConverter -> domainEventConverter.canApply(genericRecord))
+                             .forEach(action);
     }
 
 }

@@ -29,7 +29,7 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
       properties:
         isolation.level: read_committed
-#        specific.avro.reader: true
+        #        specific.avro.reader: true
         # Delegate deserializers
         spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
         spring.deserializer.value.delegate.class: io.confluent.kafka.serializers.KafkaAvroDeserializer

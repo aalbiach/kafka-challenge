@@ -26,8 +26,8 @@ public final class UserCreatedEvent extends DomainEvent {
             String email,
             Boolean active) {
         super(aggregateId, eventId, occurredOn);
-        this.name = name;
-        this.email = email;
+        this.name   = name;
+        this.email  = email;
         this.active = active;
     }
 
