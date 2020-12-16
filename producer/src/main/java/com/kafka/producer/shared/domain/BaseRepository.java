@@ -1,17 +1,20 @@
 package com.kafka.producer.shared.domain;
 
+import com.kafka.producer.shared.domain.vo.Identifier;
+import org.springframework.lang.NonNull;
+
 import java.util.Optional;
 
-public interface BaseRepository<ENTITY, ID> {
+public interface BaseRepository<ENTITY extends AggregateRoot, ID extends Identifier> {
 
-    ENTITY saveOrUpdate(ENTITY data);
+    ENTITY saveOrUpdate(@NonNull ENTITY data);
 
-    Optional<ENTITY> findById(ID id);
+    Optional<ENTITY> findById(@NonNull ID id);
 
-//    ENTITY update(ENTITY data);
+//    ENTITY update(@NonNull ENTITY data);
 
-    void deleteById(ID id);
+    void delete(@NonNull ID id);
 
-    void delete(ENTITY id);
+    void delete(@NonNull ENTITY id);
 
 }

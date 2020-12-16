@@ -1,6 +1,8 @@
 package com.kafka.producer.user.infrastructure.persistence;
 
 import com.kafka.producer.user.domain.User;
+import com.kafka.producer.user.domain.UserEmail;
+import com.kafka.producer.user.domain.UserId;
 import com.kafka.producer.user.domain.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,13 +25,21 @@ public final class InMemoryUserRepository implements UserRepository {
     }
 
     @Override
-    public Optional<User> findById(String id) {
-        return Optional.ofNullable(users.get(id));
+    public Optional<User> findById(UserId id) {
+        return Optional.ofNullable(users.get(id.value()));
     }
 
     @Override
-    public void deleteById(String id) {
-        users.remove(id);
+    public Optional<User> findByEmail(UserEmail email) {
+        return users.values()
+                    .stream()
+                    .filter(user -> user.email().equals(email))
+                    .findFirst();
+    }
+
+    @Override
+    public void delete(UserId id) {
+        users.remove(id.value());
     }
 
     @Override
