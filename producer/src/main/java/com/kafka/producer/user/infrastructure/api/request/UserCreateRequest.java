@@ -1,4 +1,4 @@
-package com.kafka.producer.user.infrastructure.controller.request;
+package com.kafka.producer.user.infrastructure.api.request;
 
 import lombok.Value;
 
