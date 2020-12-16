@@ -1,13 +1,19 @@
 # Kafka Challenge
-Implementation example of Spring Boot applications to produce/consume messages to/from Kafka following Hexagonal Architecture.
+
+Implementation example of Spring Boot applications to produce/consume messages to/from Kafka following Hexagonal
+Architecture.
 
 ### Prerequisites
+
 - Java 15
 - Git
 - Docker
 
 ### Running locally
-Kafka-challenge is a Spring Boot application built using Maven. You can build a jar file and run it from the command line:
+
+Kafka-challenge is a Spring Boot application built using Maven. You can build a jar file and run it from the command
+line:
+
 ```shell
 # Clone
 git clone https://github.com/aalbiach/kafka-challenge.git
@@ -38,4 +44,5 @@ cd kafka-challenge/consumer
 ```
 
 ### Test messages
+
 You can find a test requests in [http](http) directory in _cURL_ and _Jetbrains HTTP Request_ formats.
